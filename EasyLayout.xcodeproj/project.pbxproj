@@ -13,6 +13,7 @@
 		C7EB405E244DE65300590CF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7EB405C244DE65300590CF3 /* Main.storyboard */; };
 		C7EB4060244DE65600590CF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7EB405F244DE65600590CF3 /* Assets.xcassets */; };
 		C7EB4063244DE65600590CF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7EB4061244DE65600590CF3 /* LaunchScreen.storyboard */; };
+		C7EB406C244DE68700590CF3 /* EasyLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EB406B244DE68700590CF3 /* EasyLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C7EB405F244DE65600590CF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7EB4062244DE65600590CF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7EB4064244DE65600590CF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7EB406B244DE68700590CF3 /* EasyLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +61,21 @@
 				C7EB4056244DE65300590CF3 /* AppDelegate.swift */,
 				C7EB4058244DE65300590CF3 /* SceneDelegate.swift */,
 				C7EB405A244DE65300590CF3 /* ViewController.swift */,
+				C7EB406A244DE66B00590CF3 /* LayoutExtension */,
 				C7EB405C244DE65300590CF3 /* Main.storyboard */,
 				C7EB405F244DE65600590CF3 /* Assets.xcassets */,
 				C7EB4061244DE65600590CF3 /* LaunchScreen.storyboard */,
 				C7EB4064244DE65600590CF3 /* Info.plist */,
 			);
 			path = EasyLayout;
+			sourceTree = "<group>";
+		};
+		C7EB406A244DE66B00590CF3 /* LayoutExtension */ = {
+			isa = PBXGroup;
+			children = (
+				C7EB406B244DE68700590CF3 /* EasyLayout.swift */,
+			);
+			path = LayoutExtension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +152,7 @@
 				C7EB405B244DE65300590CF3 /* ViewController.swift in Sources */,
 				C7EB4057244DE65300590CF3 /* AppDelegate.swift in Sources */,
 				C7EB4059244DE65300590CF3 /* SceneDelegate.swift in Sources */,
+				C7EB406C244DE68700590CF3 /* EasyLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +299,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WEU294HD3Y;
 				INFOPLIST_FILE = EasyLayout/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,6 +318,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WEU294HD3Y;
 				INFOPLIST_FILE = EasyLayout/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
