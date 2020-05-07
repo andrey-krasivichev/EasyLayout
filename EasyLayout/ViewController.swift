@@ -72,6 +72,13 @@ class ViewController: UIViewController {
         safeAreaCheckView.makeConstraints { (make) in
             make.edges.equalTo(self.view.cm.safeArea).inset(30.0)
         }
+        
+        let superViewCheck: UIView = UIView()
+        superViewCheck.backgroundColor = UIColor.orange
+        safeAreaCheckView.addSubview(superViewCheck)
+        superViewCheck.makeConstraints { (make) in
+            make.edges.equalToSuperView().inset(20.0)
+        }
     }
 
 }   

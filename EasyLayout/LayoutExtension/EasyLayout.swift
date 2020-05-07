@@ -127,6 +127,30 @@ extension UIView {
             return self
         }
         
+        @discardableResult
+        func equalToSuperView() -> ConstraintMaker {
+            guard let superView = self.view?.superview else {
+                return self
+            }
+            return self.equalTo(superView)
+        }
+        
+        @discardableResult
+        func greaterOrEqualToSuperView() -> ConstraintMaker {
+            guard let superView = self.view?.superview else {
+                return self
+            }
+            return self.greaterOrEqualTo(superView)
+        }
+        
+        @discardableResult
+        func lessOrEqualToSuperView() -> ConstraintMaker {
+            guard let superView = self.view?.superview else {
+                return self
+            }
+            return self.lessOrEqualTo(superView)
+        }
+        
         // MARK: UIView anchors support
         @discardableResult
         func equalTo(_ anchorAttribute: AnchorAttribute) -> ConstraintMaker {
