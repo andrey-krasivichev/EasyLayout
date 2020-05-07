@@ -65,6 +65,13 @@ class ViewController: UIViewController {
             make.bottom.equalTo(scrollView).priority(100.0)
             make.bottom.equalTo(scrollView).offset(-20.0)
         }
+        
+        let safeAreaCheckView: UIView = UIView()
+        safeAreaCheckView.backgroundColor = UIColor.red
+        self.view.addSubview(safeAreaCheckView)
+        safeAreaCheckView.makeConstraints { (make) in
+            make.edges.equalTo(self.view.cm.safeArea).inset(30.0)
+        }
     }
 
 }   

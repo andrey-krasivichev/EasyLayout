@@ -130,21 +130,21 @@ extension UIView {
         // MARK: UIView anchors support
         @discardableResult
         func equalTo(_ anchorAttribute: AnchorAttribute) -> ConstraintMaker {
-            buildingItems.applyRelation(NSLayoutConstraint.Relation.equal, attribute: anchorAttribute.attribute, secondView: anchorAttribute.view)
+            buildingItems.applyRelation(NSLayoutConstraint.Relation.equal, attribute: anchorAttribute)
             nextItemsFinalizeCurrent = true
             return self
         }
         
         @discardableResult
         func greaterOrEqualTo(_ anchorAttribute: AnchorAttribute) -> ConstraintMaker {
-            buildingItems.applyRelation(NSLayoutConstraint.Relation.greaterThanOrEqual, attribute: anchorAttribute.attribute, secondView: view)
+            buildingItems.applyRelation(NSLayoutConstraint.Relation.greaterThanOrEqual, attribute: anchorAttribute)
             nextItemsFinalizeCurrent = true
             return self
         }
         
         @discardableResult
         func lessOrEqualTo(_ anchorAttribute: AnchorAttribute) -> ConstraintMaker {
-            buildingItems.applyRelation(NSLayoutConstraint.Relation.lessThanOrEqual, attribute: anchorAttribute.attribute, secondView: view)
+            buildingItems.applyRelation(NSLayoutConstraint.Relation.lessThanOrEqual, attribute: anchorAttribute)
             nextItemsFinalizeCurrent = true
             return self
         }
@@ -318,10 +318,13 @@ extension UIView {
     
     final class AnchorAttribute {
         weak var view: UIView?
-        fileprivate var attribute: NSLayoutConstraint.Attribute
-        init(view: UIView?, attribute: NSLayoutConstraint.Attribute) {
+        fileprivate var attribute: NSLayoutConstraint.Attribute?
+        fileprivate let preferrsSafeArea: Bool
+        
+        fileprivate init(view: UIView?, attribute: NSLayoutConstraint.Attribute? = nil, preferrsSafeArea: Bool = false) {
             self.view = view
             self.attribute = attribute
+            self.preferrsSafeArea = preferrsSafeArea
         }
     }
     
@@ -370,6 +373,10 @@ extension UIView {
         var centerY: AnchorAttribute {
             return AnchorAttribute(view: view, attribute: NSLayoutConstraint.Attribute.centerY)
         }
+        
+        var safeArea: AnchorAttribute {
+            return AnchorAttribute(view: view, preferrsSafeArea: true)
+        }
     }
     
     /// cm = Constraint Maker Abbreviation
@@ -387,6 +394,7 @@ private class ConstraintDescriptionItem {
     var multiplier: CGFloat = 1.0
     var constant: CGFloat = 0.0
     var priority: UILayoutPriority = UILayoutPriority.required
+    var preferrsSafeArea: Bool = false
     
     init(firstView: UIView?, attribute: NSLayoutConstraint.Attribute) {
         self.firstView = firstView
@@ -401,8 +409,9 @@ private class ConstraintDescriptionItem {
             else {
                 return nil
         }
+        let toItem = preferrsSafeArea ? secondView?.safeAreaLayoutGuide : secondView
         let constraint: NSLayoutConstraint = NSLayoutConstraint(item: firstView, attribute: firstViewAttribute, relatedBy: relation,
-                                                                toItem: secondView, attribute: secondAttribute, multiplier: multiplier,
+                                                                toItem: toItem, attribute: secondAttribute, multiplier: multiplier,
                                                                 constant: constant)
         constraint.priority = priority
         return constraint
@@ -451,11 +460,12 @@ fileprivate extension Array where Element == ConstraintDescriptionItem {
         }
     }
     
-    func applyRelation(_ relation: NSLayoutConstraint.Relation, attribute: NSLayoutConstraint.Attribute, secondView: UIView?) {
+    func applyRelation(_ relation: NSLayoutConstraint.Relation, attribute: UIView.AnchorAttribute) {
         for item in self {
-            item.secondView = secondView
-            item.secondViewAttribute = attribute
+            item.secondView = attribute.view
+            item.secondViewAttribute = attribute.attribute
             item.firstViewToSecondRelation = relation
+            item.preferrsSafeArea = attribute.preferrsSafeArea
         }
     }
 }
