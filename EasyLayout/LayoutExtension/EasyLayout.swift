@@ -95,12 +95,33 @@ extension UIView {
             return self
         }
         
+        var center: ConstraintMaker {
+            finalizeCurrentItemsIfNeeded()
+            buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.centerX))
+            buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.centerY))
+            return self
+        }
+
         var edges: ConstraintMaker {
             finalizeCurrentItemsIfNeeded()
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.left))
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.right))
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.top))
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.bottom))
+            return self
+        }
+        
+        var vertically: ConstraintMaker {
+            finalizeCurrentItemsIfNeeded()
+            buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.top))
+            buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.bottom))
+            return self
+        }
+        
+        var horizontally: ConstraintMaker {
+            finalizeCurrentItemsIfNeeded()
+            buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.left))
+            buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.right))
             return self
         }
         
@@ -129,26 +150,26 @@ extension UIView {
         
         @discardableResult
         func equalToSuperView() -> ConstraintMaker {
-            guard let superView = self.view?.superview else {
+            guard let superView = view?.superview else {
                 return self
             }
-            return self.equalTo(superView)
+            return equalTo(superView)
         }
         
         @discardableResult
         func greaterOrEqualToSuperView() -> ConstraintMaker {
-            guard let superView = self.view?.superview else {
+            guard let superView = view?.superview else {
                 return self
             }
-            return self.greaterOrEqualTo(superView)
+            return greaterOrEqualTo(superView)
         }
         
         @discardableResult
         func lessOrEqualToSuperView() -> ConstraintMaker {
-            guard let superView = self.view?.superview else {
+            guard let superView = view?.superview else {
                 return self
             }
-            return self.lessOrEqualTo(superView)
+            return lessOrEqualTo(superView)
         }
         
         // MARK: UIView anchors support
@@ -264,10 +285,12 @@ extension UIView {
         @discardableResult
         func inset(_ value: CGFloat) -> ConstraintMaker {
             for item in buildingItems {
-                if item.firstViewAttribute == NSLayoutConstraint.Attribute.top || item.firstViewAttribute == NSLayoutConstraint.Attribute.left || item.firstViewAttribute == NSLayoutConstraint.Attribute.leading {
+                if item.firstViewAttribute == NSLayoutConstraint.Attribute.top || item.firstViewAttribute == NSLayoutConstraint.Attribute.left
+                    || item.firstViewAttribute == NSLayoutConstraint.Attribute.leading {
                     item.constant = value
                 }
-                if item.firstViewAttribute == NSLayoutConstraint.Attribute.right || item.firstViewAttribute == NSLayoutConstraint.Attribute.trailing || item.firstViewAttribute == NSLayoutConstraint.Attribute.bottom {
+                if item.firstViewAttribute == NSLayoutConstraint.Attribute.right || item.firstViewAttribute == NSLayoutConstraint.Attribute.trailing
+                    || item.firstViewAttribute == NSLayoutConstraint.Attribute.bottom {
                     item.constant = -value
                 }
             }
