@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
     final class ConstraintMaker {
         private weak var view: UIView?
         private var buildingItems: [ConstraintDescriptionItem] = []
@@ -28,81 +28,81 @@ extension UIView {
             self.view = view
         }
         
-        var left: ConstraintMaker {
+        public var left: ConstraintMaker {
             finalizeCurrentItemsIfNeeded()
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.left))
             return self
         }
         
-        var right: ConstraintMaker {
+        public var right: ConstraintMaker {
             finalizeCurrentItemsIfNeeded()
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.right))
             return self
         }
         
-        var top: ConstraintMaker {
+        public var top: ConstraintMaker {
             finalizeCurrentItemsIfNeeded()
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.top))
             return self
         }
         
-        var bottom: ConstraintMaker {
+        public var bottom: ConstraintMaker {
             finalizeCurrentItemsIfNeeded()
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.bottom))
             return self
         }
         
-        var leading: ConstraintMaker {
+        public var leading: ConstraintMaker {
             finalizeCurrentItemsIfNeeded()
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.leading))
             return self
         }
         
-        var trailing: ConstraintMaker {
+        public var trailing: ConstraintMaker {
             finalizeCurrentItemsIfNeeded()
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.trailing))
             return self
         }
         
-        var width: ConstraintMaker {
+        public var width: ConstraintMaker {
             finalizeCurrentItemsIfNeeded()
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.width))
             return self
         }
         
-        var height: ConstraintMaker {
+        public var height: ConstraintMaker {
             finalizeCurrentItemsIfNeeded()
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.height))
             return self
         }
         
-        var size: ConstraintMaker {
+        public var size: ConstraintMaker {
             finalizeCurrentItemsIfNeeded()
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.width))
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.height))
             return self
         }
         
-        var centerX: ConstraintMaker {
+        public var centerX: ConstraintMaker {
             finalizeCurrentItemsIfNeeded()
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.centerX))
             return self
         }
         
-        var centerY: ConstraintMaker {
+        public var centerY: ConstraintMaker {
             finalizeCurrentItemsIfNeeded()
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.centerY))
             return self
         }
         
-        var center: ConstraintMaker {
+        public var center: ConstraintMaker {
             finalizeCurrentItemsIfNeeded()
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.centerX))
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.centerY))
             return self
         }
 
-        var edges: ConstraintMaker {
+        public var edges: ConstraintMaker {
             finalizeCurrentItemsIfNeeded()
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.left))
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.right))
@@ -111,14 +111,14 @@ extension UIView {
             return self
         }
         
-        var vertically: ConstraintMaker {
+        public var vertically: ConstraintMaker {
             finalizeCurrentItemsIfNeeded()
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.top))
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.bottom))
             return self
         }
         
-        var horizontally: ConstraintMaker {
+        public var horizontally: ConstraintMaker {
             finalizeCurrentItemsIfNeeded()
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.left))
             buildingItems.append(ConstraintDescriptionItem(firstView: view, attribute: NSLayoutConstraint.Attribute.right))
@@ -128,28 +128,28 @@ extension UIView {
         // equality funcs
         // MARK: UIView support
         @discardableResult
-        func equalTo(_ view: UIView) -> ConstraintMaker {
+        public func equalTo(_ view: UIView) -> ConstraintMaker {
             buildingItems.applyRelation(NSLayoutConstraint.Relation.equal, secondView: view)
             nextItemsFinalizeCurrent = true
             return self
         }
         
         @discardableResult
-        func greaterOrEqualTo(_ view: UIView) -> ConstraintMaker {
+        public func greaterOrEqualTo(_ view: UIView) -> ConstraintMaker {
             buildingItems.applyRelation(NSLayoutConstraint.Relation.greaterThanOrEqual, secondView: view)
             nextItemsFinalizeCurrent = true
             return self
         }
         
         @discardableResult
-        func lessOrEqualTo(_ view: UIView) -> ConstraintMaker {
+        public func lessOrEqualTo(_ view: UIView) -> ConstraintMaker {
             buildingItems.applyRelation(NSLayoutConstraint.Relation.lessThanOrEqual, secondView: view)
             nextItemsFinalizeCurrent = true
             return self
         }
         
         @discardableResult
-        func equalToSuperView() -> ConstraintMaker {
+        public func equalToSuperView() -> ConstraintMaker {
             guard let superView = view?.superview else {
                 return self
             }
@@ -157,7 +157,7 @@ extension UIView {
         }
         
         @discardableResult
-        func greaterOrEqualToSuperView() -> ConstraintMaker {
+        public func greaterOrEqualToSuperView() -> ConstraintMaker {
             guard let superView = view?.superview else {
                 return self
             }
@@ -165,7 +165,7 @@ extension UIView {
         }
         
         @discardableResult
-        func lessOrEqualToSuperView() -> ConstraintMaker {
+        public func lessOrEqualToSuperView() -> ConstraintMaker {
             guard let superView = view?.superview else {
                 return self
             }
@@ -174,21 +174,21 @@ extension UIView {
         
         // MARK: UIView anchors support
         @discardableResult
-        func equalTo(_ anchorAttribute: AnchorAttribute) -> ConstraintMaker {
+        public func equalTo(_ anchorAttribute: AnchorAttribute) -> ConstraintMaker {
             buildingItems.applyRelation(NSLayoutConstraint.Relation.equal, attribute: anchorAttribute)
             nextItemsFinalizeCurrent = true
             return self
         }
         
         @discardableResult
-        func greaterOrEqualTo(_ anchorAttribute: AnchorAttribute) -> ConstraintMaker {
+        public func greaterOrEqualTo(_ anchorAttribute: AnchorAttribute) -> ConstraintMaker {
             buildingItems.applyRelation(NSLayoutConstraint.Relation.greaterThanOrEqual, attribute: anchorAttribute)
             nextItemsFinalizeCurrent = true
             return self
         }
         
         @discardableResult
-        func lessOrEqualTo(_ anchorAttribute: AnchorAttribute) -> ConstraintMaker {
+        public func lessOrEqualTo(_ anchorAttribute: AnchorAttribute) -> ConstraintMaker {
             buildingItems.applyRelation(NSLayoutConstraint.Relation.lessThanOrEqual, attribute: anchorAttribute)
             nextItemsFinalizeCurrent = true
             return self
@@ -196,7 +196,7 @@ extension UIView {
         
         // MARK: Float support
         @discardableResult
-        func equalTo(_ value: CGFloat) -> ConstraintMaker {
+        public func equalTo(_ value: CGFloat) -> ConstraintMaker {
             buildingItems.applyRelation(NSLayoutConstraint.Relation.equal)
             buildingItems.applyConstant(value)
             nextItemsFinalizeCurrent = true
@@ -204,7 +204,7 @@ extension UIView {
         }
         
         @discardableResult
-        func greaterOrEqualTo(_ value: CGFloat) -> ConstraintMaker {
+        public func greaterOrEqualTo(_ value: CGFloat) -> ConstraintMaker {
             buildingItems.applyRelation(NSLayoutConstraint.Relation.greaterThanOrEqual)
             buildingItems.applyConstant(value)
             nextItemsFinalizeCurrent = true
@@ -212,7 +212,7 @@ extension UIView {
         }
         
         @discardableResult
-        func lessOrEqualTo(_ value: CGFloat) -> ConstraintMaker {
+        public func lessOrEqualTo(_ value: CGFloat) -> ConstraintMaker {
             buildingItems.applyRelation(NSLayoutConstraint.Relation.lessThanOrEqual)
             buildingItems.applyConstant(value)
             nextItemsFinalizeCurrent = true
@@ -221,7 +221,7 @@ extension UIView {
         
         // MARK: Size support
         @discardableResult
-        func equalTo(_ size: CGSize) -> ConstraintMaker {
+        public func equalTo(_ size: CGSize) -> ConstraintMaker {
             for item in buildingItems {
                 if item.firstViewAttribute == NSLayoutConstraint.Attribute.width {
                     item.firstViewToSecondRelation = NSLayoutConstraint.Relation.equal
@@ -237,7 +237,7 @@ extension UIView {
         }
         
         @discardableResult
-        func lessOrEqualTo(_ size: CGSize) -> ConstraintMaker {
+        public func lessOrEqualTo(_ size: CGSize) -> ConstraintMaker {
             for item in buildingItems {
                 if item.firstViewAttribute == NSLayoutConstraint.Attribute.width {
                     item.firstViewToSecondRelation = NSLayoutConstraint.Relation.lessThanOrEqual
@@ -253,7 +253,7 @@ extension UIView {
         }
         
         @discardableResult
-        func greaterOrEqualTo(_ size: CGSize) -> ConstraintMaker {
+        public func greaterOrEqualTo(_ size: CGSize) -> ConstraintMaker {
             for item in buildingItems {
                 if item.firstViewAttribute == NSLayoutConstraint.Attribute.width {
                     item.firstViewToSecondRelation = NSLayoutConstraint.Relation.greaterThanOrEqual
@@ -269,21 +269,21 @@ extension UIView {
         }
         
         @discardableResult
-        func multipliedBy(_ multiplier: CGFloat) -> ConstraintMaker {
+        public func multipliedBy(_ multiplier: CGFloat) -> ConstraintMaker {
             buildingItems.applyMultiplier(multiplier)
             nextItemsFinalizeCurrent = true
             return self
         }
         
         @discardableResult
-        func offset(_ value: CGFloat) -> ConstraintMaker {
+        public func offset(_ value: CGFloat) -> ConstraintMaker {
             buildingItems.applyConstant(value)
             nextItemsFinalizeCurrent = true
             return self
         }
         
         @discardableResult
-        func inset(_ value: CGFloat) -> ConstraintMaker {
+        public func inset(_ value: CGFloat) -> ConstraintMaker {
             for item in buildingItems {
                 if item.firstViewAttribute == NSLayoutConstraint.Attribute.top || item.firstViewAttribute == NSLayoutConstraint.Attribute.left
                     || item.firstViewAttribute == NSLayoutConstraint.Attribute.leading {
@@ -299,14 +299,14 @@ extension UIView {
         }
         
         @discardableResult
-        func priority(_ priority: UILayoutPriority) -> ConstraintMaker {
+        public func priority(_ priority: UILayoutPriority) -> ConstraintMaker {
             buildingItems.applyPriority(priority)
             nextItemsFinalizeCurrent = true
             return self
         }
         
         @discardableResult
-        func priority(_ priority: Float) -> ConstraintMaker {
+        public func priority(_ priority: Float) -> ConstraintMaker {
             var priorityToSet = min(priority, UILayoutPriority.required.rawValue)
             priorityToSet = max(0.0, priorityToSet)
             buildingItems.applyPriority(UILayoutPriority(priorityToSet))
@@ -315,22 +315,22 @@ extension UIView {
         }
         
         @discardableResult
-        func priorityRequired() -> ConstraintMaker {
+        public func priorityRequired() -> ConstraintMaker {
             return priority(UILayoutPriority.required)
         }
         
         @discardableResult
-        func priorityHigh() -> ConstraintMaker {
+        public func priorityHigh() -> ConstraintMaker {
             return priority(UILayoutPriority.defaultHigh)
         }
         
         @discardableResult
-        func priorityLow() -> ConstraintMaker {
+        public func priorityLow() -> ConstraintMaker {
             return priority(UILayoutPriority.defaultLow)
         }
         
         @discardableResult
-        func constraints() -> [NSLayoutConstraint] {
+        public func constraints() -> [NSLayoutConstraint] {
             let constraints: [NSLayoutConstraint] = buildingItems.makeConstraints()
             readyConstraints.append(contentsOf: constraints)
             buildingItems = []
@@ -381,47 +381,47 @@ extension UIView {
             self.view = view
         }
         
-        var left: AnchorAttribute {
+        public var left: AnchorAttribute {
             return AnchorAttribute(view: view, attribute: NSLayoutConstraint.Attribute.left)
         }
         
-        var right: AnchorAttribute {
+        public var right: AnchorAttribute {
             return AnchorAttribute(view: view, attribute: NSLayoutConstraint.Attribute.right)
         }
         
-        var top: AnchorAttribute {
+        public var top: AnchorAttribute {
             return AnchorAttribute(view: view, attribute: NSLayoutConstraint.Attribute.top)
         }
         
-        var bottom: AnchorAttribute {
+        public var bottom: AnchorAttribute {
             return AnchorAttribute(view: view, attribute: NSLayoutConstraint.Attribute.bottom)
         }
         
-        var leading: AnchorAttribute {
+        public var leading: AnchorAttribute {
             return AnchorAttribute(view: view, attribute: NSLayoutConstraint.Attribute.leading)
         }
         
-        var trailing: AnchorAttribute {
+        public var trailing: AnchorAttribute {
             return AnchorAttribute(view: view, attribute: NSLayoutConstraint.Attribute.trailing)
         }
         
-        var width: AnchorAttribute {
+        public var width: AnchorAttribute {
             return AnchorAttribute(view: view, attribute: NSLayoutConstraint.Attribute.width)
         }
         
-        var height: AnchorAttribute {
+        public var height: AnchorAttribute {
             return AnchorAttribute(view: view, attribute: NSLayoutConstraint.Attribute.height)
         }
         
-        var centerX: AnchorAttribute {
+        public var centerX: AnchorAttribute {
             return AnchorAttribute(view: view, attribute: NSLayoutConstraint.Attribute.centerX)
         }
         
-        var centerY: AnchorAttribute {
+        public var centerY: AnchorAttribute {
             return AnchorAttribute(view: view, attribute: NSLayoutConstraint.Attribute.centerY)
         }
         
-        var safeArea: AnchorAttribute {
+        public var safeArea: AnchorAttribute {
             return AnchorAttribute(view: view, preferrsSafeArea: true)
         }
     }
