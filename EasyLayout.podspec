@@ -10,7 +10,7 @@ s.version = "0.1.0"
 
 s.license = { :type => "MIT", :file => "LICENSE" }
 
-s.author = { "Keegan Rush" => "krasivichev_andrey@mail.ru" }
+s.author = { "Andrey Krasivichev" => "krasivichev_andrey@mail.ru" }
 
 s.homepage = "https://github.com/andrey-krasivichev/EasyLayout"
 
