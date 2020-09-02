@@ -15,7 +15,7 @@ s.author = { "Andrey Krasivichev" => "krasivichev_andrey@mail.ru" }
 s.homepage = "https://github.com/andrey-krasivichev/EasyLayout"
 
 s.source = { :git => "https://github.com/andrey-krasivichev/EasyLayout.git",
-             :tag => "s.version.to_s" }
+             :tag => "#{s.version}" }
 
 s.framework = "UIKit"
 
