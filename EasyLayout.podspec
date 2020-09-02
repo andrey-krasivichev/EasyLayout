@@ -6,7 +6,7 @@ s.name = "EasyLayout-ios"
 s.summary = "EasyLayout is a syntax sugar for creating NSLayoutConstraints programmatically in a single file."
 s.requires_arc = true
 
-s.version = "0.1.0"
+s.version = "1.0.0"
 
 s.license = { :type => "MIT", :file => "LICENSE" }
 
